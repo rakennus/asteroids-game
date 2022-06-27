@@ -32,13 +32,13 @@ body {
   right: 0;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(rgba(0, 0, 0, 0.20) 20%, transparent 20%), linear-gradient(to right, rgba(0, 0, 0, 0.2) 20%, transparent 20%), linear-gradient(rgba(255, 0, 0, 0.1) 33%, rgba(0, 255, 0, 0.1) 33% 66%, rgba(0, 0, 255, 0.1) 66%);
+  background: linear-gradient(rgba(0, 0, 0, 0.20) 20%, transparent 20%), linear-gradient(to right, rgba(0, 0, 0, 0.2) 20%, transparent 20%), linear-gradient(rgba(255, 0, 0, 0.3) 33%, rgba(0, 255, 0, 0.3) 33% 66%, rgba(0, 0, 255, 0.35) 66%);
   background-size: 100% 6px, 6px 100%;
   border-radius: 40px;
 }
 
 #canvasWrapper {
-  transform: perspective(400px) rotateY(-10deg) translateZ(-200px);
+  transform: perspective(400px) rotateY(-8deg) translateZ(-200px);
 }
 
 #canvas {
