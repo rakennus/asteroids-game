@@ -1,0 +1,43 @@
+body { background-color: #202020; overflow: hidden; }
+
+body { margin: 0; padding: 0; overflow: hidden; }
+
+.crt::after { content: " "; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 2; pointer-events: none; animation: flicker 0.15s infinite; background: rgba(30, 30, 30, 0.2); border-radius: 40px; }
+
+.crt::before { content: " "; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 2; pointer-events: none; background: linear-gradient(rgba(0, 0, 0, 0.2) 20%, transparent 20%), linear-gradient(to right, rgba(0, 0, 0, 0.2) 20%, transparent 20%), linear-gradient(rgba(255, 0, 0, 0.1) 33%, rgba(0, 255, 0, 0.1) 33% 66%, rgba(0, 0, 255, 0.1) 66%); background-size: 100% 6px, 6px 100%; border-radius: 40px; }
+
+#canvasWrapper { transform: perspective(400px) rotateY(-10deg) translateZ(-200px); }
+
+#canvas { image-rendering: -moz-crisp-edges; image-rendering: -webkit-crisp-edges; image-rendering: pixelated; image-rendering: crisp-edges; border-radius: 40px; }
+
+#game { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.cube_face { background-color: #0000ff; position: absolute; top: 0; bottom: 0; }
+
+.cube_face-right { transform: perspective(400px) rotateY(80deg) translateZ(-341px) translateX(341px); }
+
+.responsive_box { width: 100%; height: auto; }
+
+@keyframes flicker { 0% { opacity: 0.27861; }
+  5% { opacity: 0.34769; }
+  10% { opacity: 0.23604; }
+  15% { opacity: 0.90626; }
+  20% { opacity: 0.18128; }
+  25% { opacity: 0.83891; }
+  30% { opacity: 0.65583; }
+  35% { opacity: 0.67807; }
+  40% { opacity: 0.26559; }
+  45% { opacity: 0.84693; }
+  50% { opacity: 0.96019; }
+  55% { opacity: 0.08594; }
+  60% { opacity: 0.20313; }
+  65% { opacity: 0.71988; }
+  70% { opacity: 0.53455; }
+  75% { opacity: 0.37288; }
+  80% { opacity: 0.71428; }
+  85% { opacity: 0.70419; }
+  90% { opacity: 0.7003; }
+  95% { opacity: 0.36108; }
+  100% { opacity: 0.24387; } }
+
+/*# sourceMappingURL=styles.css.map */

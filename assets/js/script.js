@@ -1,6 +1,7 @@
 "use strict";
 // global variable declaration
 let canvas;
+let responsiveContainers;
 let ctx;
 let rect = null;
 
@@ -23,13 +24,15 @@ let controls = {
 }
 
 let bullets = [];
+let asteroids = [];
 
 window.onload = (event) => {
     canvas = document.getElementById('canvas');
+    responsiveContainers = document.querySelectorAll('.responsive_box');
     ctx = canvas.getContext('2d', { alpha: false });
 
-    canvas.width = 400;
-    canvas.height = 300;
+    canvas.width = 640;
+    canvas.height = 480;
 
     ratio = canvas.width / canvas.height;
 
@@ -60,16 +63,27 @@ let myGameArea = {
 
         // Start the first frame request
         window.requestAnimationFrame(gameLoop);
+
+        let amount = 8;
+        let perEdge = amount / 4;
+
+        for (let k = 0; k < perEdge; k++) {
+            asteroids.push(new Asteroid({ x: -Asteroid.maxRadius + Math.random() * (Asteroid.maxRadius * 2 + canvas.width), y: -Asteroid.maxRadius }, { x: 200, y: 200 }))
+        }
     },
     canvasStyle: function () {
         clientRatio = document.documentElement.clientWidth / document.documentElement.clientHeight;
 
         if (clientRatio < ratio) {
-            canvas.style.width = "100%";
-            canvas.style.height = "auto";
+            responsiveContainers.forEach(responsiveContainer => {
+                responsiveContainer.style.width = "100%";
+                responsiveContainer.style.height = "auto";
+            });
         } else if (clientRatio > ratio) {
-            canvas.style.width = "auto";
-            canvas.style.height = "100%";
+            responsiveContainers.forEach(responsiveContainer => {
+                responsiveContainer.style.width = "auto";
+                responsiveContainer.style.height = "100%";
+            });
         }
 
         ctx.imageSmoothingEnabled = false;
@@ -106,6 +120,11 @@ function update() {
         bullets[i].update();
         if (bullets[i].lifeTiem <= 0) bullets.splice(bullets.indexOf(bullets[i]), 1);
     }
+
+    for (let i = 0; i < asteroids.length; i++) {
+        asteroids[i].update();
+        if (asteroids[i].lifeTiem <= 0) asteroids.splice(asteroids.indexOf(asteroids[i]), 1);
+    }
 }
 
 function draw() {
@@ -117,11 +136,14 @@ function draw() {
     for (let i = 0; i < bullets.length; i++) {
         bullets[i].draw();
     }
+    for (let i = 0; i < asteroids.length; i++) {
+        asteroids[i].draw();
+    }
     if (controls.touchControls) joyStick.draw();
 
     // draw fps
     ctx.font = '8px Arial';
-    ctx.fillText("FPS: " + fps, 2, 8);
+    ctx.fillText("FPS: " + fps, 10, 16);
 }
 
 function keyDownHandler(e) {
@@ -172,3 +194,8 @@ function TouchHandleEnd(e) {
 
     controls.touchStarted = false;
 };
+
+let point = function (x, y) {
+    this.x = x;
+    this.y = y;
+}

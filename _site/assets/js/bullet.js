@@ -8,7 +8,7 @@ function Bullet(pos, vel, dir) {
     this.velocityX = 400 + Math.abs(vel.x);
     this.velocityY = 400 + Math.abs(vel.y);
 
-    this.lifeTiem = 0.5;
+    this.lifeTiem = 0.8;
 
     this.update = function () {
         this.x += this.velocityX * this.xDir * secondsPassed;
